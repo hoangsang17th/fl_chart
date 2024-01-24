@@ -198,16 +198,15 @@ class PieChartPainter extends BaseChartPainter<PieChartData> {
   ) {
     final sectionRadiusRect = Rect.fromCircle(
       center: center,
-      radius: centerRadius + section.radius + 10, // 10 is size of outer circle
+      radius: centerRadius + section.radius + section.marginTouchedRadius,
     );
-    print(centerRadius);
 
     final centerRadiusRect = Rect.fromCircle(
       center: center,
-      radius: centerRadius * 2 + 10 + centerRadius * .1,
-      // *2 is skip the inner circle
-      // +(centerRadius *.1) is padding from inner circle to outer circle
-      // +10 is size of outer circle
+      radius: centerRadius +
+          section.radius +
+          section.touchedRadius +
+          section.marginTouchedRadius,
     );
 
     final startRadians = Utils().radians(tempAngle);

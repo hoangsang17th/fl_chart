@@ -160,6 +160,8 @@ class PieChartSectionData {
     double? titlePositionPercentageOffset,
     double? badgePositionPercentageOffset,
     this.isTouched = false,
+    this. touchedRadius = 0,
+    this.marginTouchedRadius = 5,
   })  : value = value ?? 10,
         color = color ?? Colors.cyan,
         radius = radius ?? 40,
@@ -170,7 +172,8 @@ class PieChartSectionData {
         badgePositionPercentageOffset = badgePositionPercentageOffset ?? 0.5;
 
   final bool isTouched;
-
+  final double touchedRadius;
+  final double marginTouchedRadius;
   /// It determines how much space it should occupy around the circle.
   ///
   /// This is depends on sum of all sections, each section should

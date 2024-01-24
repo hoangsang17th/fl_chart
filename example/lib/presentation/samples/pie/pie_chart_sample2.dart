@@ -158,6 +158,8 @@ class PieChart2State extends State {
               color: AppColors.mainTextColor1,
               shadows: shadows,
             ),
+            touchedRadius: 10,
+            marginTouchedRadius: 0,
             isTouched: isTouched,
           );
         default:
