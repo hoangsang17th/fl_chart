@@ -174,6 +174,7 @@ class PieChartSectionData {
   final bool isTouched;
   final double touchedRadius;
   final double marginTouchedRadius;
+
   /// It determines how much space it should occupy around the circle.
   ///
   /// This is depends on sum of all sections, each section should
@@ -238,6 +239,8 @@ class PieChartSectionData {
     double? titlePositionPercentageOffset,
     double? badgePositionPercentageOffset,
     bool? isTouched,
+    double? touchedRadius,
+    double? marginTouchedRadius,
   }) {
     return PieChartSectionData(
       value: value ?? this.value,
@@ -254,6 +257,8 @@ class PieChartSectionData {
       badgePositionPercentageOffset:
           badgePositionPercentageOffset ?? this.badgePositionPercentageOffset,
       isTouched: isTouched ?? this.isTouched,
+      touchedRadius: touchedRadius ?? this.touchedRadius,
+      marginTouchedRadius: marginTouchedRadius ?? this.marginTouchedRadius,
     );
   }
 
@@ -284,6 +289,9 @@ class PieChartSectionData {
         t,
       ),
       isTouched: b.isTouched,
+      touchedRadius: lerpDouble(a.touchedRadius, b.touchedRadius, t) ?? 0,
+      marginTouchedRadius:
+          lerpDouble(a.marginTouchedRadius, b.marginTouchedRadius, t) ?? 0,
     );
   }
 }
