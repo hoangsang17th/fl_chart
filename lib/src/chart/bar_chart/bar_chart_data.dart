@@ -329,9 +329,10 @@ class BarChartRodData with EquatableMixin {
     BackgroundBarChartRodData? backDrawRodData,
     List<BarChartRodStackItem>? rodStackItems,
     this.isTouched = false,
-    this.markerRadius = 14,
+    this.markerRadius = 7,
     this.markerBorderSize = 2,
     this.markerBorderColor = Colors.transparent,
+    this.name,
   })  : fromY = fromY ?? 0,
         color =
             color ?? ((color == null && gradient == null) ? Colors.cyan : null),
@@ -341,6 +342,7 @@ class BarChartRodData with EquatableMixin {
         backDrawRodData = backDrawRodData ?? BackgroundBarChartRodData(),
         rodStackItems = rodStackItems ?? const [];
 
+  final String? name;
   final bool isTouched;
   final double markerRadius;
   final double markerBorderSize;
@@ -416,9 +418,10 @@ class BarChartRodData with EquatableMixin {
       backDrawRodData: backDrawRodData ?? this.backDrawRodData,
       rodStackItems: rodStackItems ?? this.rodStackItems,
       isTouched: isTouched ?? this.isTouched,
-      markerRadius: touchedRadius ?? this.markerRadius,
+      markerRadius: touchedRadius ?? markerRadius,
       markerBorderSize: touchedPadding ?? markerBorderSize,
       markerBorderColor: touchedColor ?? markerBorderColor,
+      name: name,
     );
   }
 
@@ -446,6 +449,7 @@ class BarChartRodData with EquatableMixin {
           Color.lerp(a.markerBorderColor, b.markerBorderColor, t)!,
       markerBorderSize: lerpDouble(a.markerBorderSize, b.markerBorderSize, t)!,
       markerRadius: lerpDouble(a.markerRadius, b.markerRadius, t)!,
+      name: b.name,
     );
   }
 
