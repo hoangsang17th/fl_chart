@@ -159,6 +159,7 @@ class PieChartSectionData {
     this.badgeWidget,
     double? titlePositionPercentageOffset,
     double? badgePositionPercentageOffset,
+    this.isTouched = false,
   })  : value = value ?? 10,
         color = color ?? Colors.cyan,
         radius = radius ?? 40,
@@ -167,6 +168,8 @@ class PieChartSectionData {
         borderSide = borderSide ?? const BorderSide(width: 0),
         titlePositionPercentageOffset = titlePositionPercentageOffset ?? 0.5,
         badgePositionPercentageOffset = badgePositionPercentageOffset ?? 0.5;
+
+  final bool isTouched;
 
   /// It determines how much space it should occupy around the circle.
   ///
@@ -231,6 +234,7 @@ class PieChartSectionData {
     Widget? badgeWidget,
     double? titlePositionPercentageOffset,
     double? badgePositionPercentageOffset,
+    bool? isTouched,
   }) {
     return PieChartSectionData(
       value: value ?? this.value,
@@ -246,6 +250,7 @@ class PieChartSectionData {
           titlePositionPercentageOffset ?? this.titlePositionPercentageOffset,
       badgePositionPercentageOffset:
           badgePositionPercentageOffset ?? this.badgePositionPercentageOffset,
+      isTouched: isTouched ?? this.isTouched,
     );
   }
 
@@ -275,6 +280,7 @@ class PieChartSectionData {
         b.badgePositionPercentageOffset,
         t,
       ),
+      isTouched: b.isTouched,
     );
   }
 }
