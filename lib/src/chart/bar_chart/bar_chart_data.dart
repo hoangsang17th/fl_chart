@@ -328,6 +328,10 @@ class BarChartRodData with EquatableMixin {
     BorderSide? borderSide,
     BackgroundBarChartRodData? backDrawRodData,
     List<BarChartRodStackItem>? rodStackItems,
+    this.isTouched = false,
+    this.markerRadius = 14,
+    this.markerBorderSize = 2,
+    this.markerBorderColor = Colors.transparent,
   })  : fromY = fromY ?? 0,
         color =
             color ?? ((color == null && gradient == null) ? Colors.cyan : null),
@@ -336,6 +340,11 @@ class BarChartRodData with EquatableMixin {
         borderSide = Utils().normalizeBorderSide(borderSide, width ?? 8),
         backDrawRodData = backDrawRodData ?? BackgroundBarChartRodData(),
         rodStackItems = rodStackItems ?? const [];
+
+  final bool isTouched;
+  final double markerRadius;
+  final double markerBorderSize;
+  final Color markerBorderColor;
 
   /// [BarChart] renders rods vertically from [fromY].
   final double fromY;
@@ -390,6 +399,10 @@ class BarChartRodData with EquatableMixin {
     BorderSide? borderSide,
     BackgroundBarChartRodData? backDrawRodData,
     List<BarChartRodStackItem>? rodStackItems,
+    bool? isTouched,
+    double? touchedRadius,
+    double? touchedPadding,
+    Color? touchedColor,
   }) {
     return BarChartRodData(
       fromY: fromY ?? this.fromY,
@@ -402,6 +415,10 @@ class BarChartRodData with EquatableMixin {
       borderSide: borderSide ?? this.borderSide,
       backDrawRodData: backDrawRodData ?? this.backDrawRodData,
       rodStackItems: rodStackItems ?? this.rodStackItems,
+      isTouched: isTouched ?? this.isTouched,
+      markerRadius: touchedRadius ?? this.markerRadius,
+      markerBorderSize: touchedPadding ?? markerBorderSize,
+      markerBorderColor: touchedColor ?? markerBorderColor,
     );
   }
 
@@ -424,6 +441,11 @@ class BarChartRodData with EquatableMixin {
       ),
       rodStackItems:
           lerpBarChartRodStackList(a.rodStackItems, b.rodStackItems, t),
+      isTouched: b.isTouched,
+      markerBorderColor:
+          Color.lerp(a.markerBorderColor, b.markerBorderColor, t)!,
+      markerBorderSize: lerpDouble(a.markerBorderSize, b.markerBorderSize, t)!,
+      markerRadius: lerpDouble(a.markerRadius, b.markerRadius, t)!,
     );
   }
 

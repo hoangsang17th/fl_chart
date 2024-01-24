@@ -170,7 +170,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
             max(borderRadius.topLeft.y, borderRadius.topRight.y) +
                 max(borderRadius.bottomLeft.y, borderRadius.bottomRight.y);
 
-        RRect barRRect;
+        RRect? barRRect;
 
         /// Draw [BackgroundBarChartRodData]
         if (barRod.backDrawRodData.show &&
@@ -324,6 +324,23 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
               ),
               _barStrokePaint,
             );
+          }
+          if (barRod.isTouched) {
+            final center = Offset(
+              (barRRect.left + barRRect.right) / 2,
+              barRRect.top,
+            );
+            canvasWrapper
+              ..drawCircle(
+                center,
+                barRod.markerRadius,
+                Paint()..color = barRod.markerBorderColor,
+              )
+              ..drawCircle(
+                center,
+                barRod.markerRadius - barRod.markerBorderSize * 2,
+                Paint()..color = barRod.color ?? Colors.red,
+              );
           }
         }
       }
