@@ -573,7 +573,7 @@ class PieChartPainter extends BaseChartPainter<PieChartData> {
 
       tempAngle += sectionAngle;
     }
-    print('foundSectionDataPosition: $foundSectionDataPosition');
+    
     return PieTouchedSection(
       foundSectionData,
       foundSectionDataPosition,
