@@ -445,9 +445,14 @@ class FlSpot with EquatableMixin {
   ///
   /// [y] determines cartesian (axis based) vertically position
   /// 0 means most bottom point of the chart
-  const FlSpot(this.x, this.y);
+  const FlSpot(
+    this.x,
+    this.y, {
+    this.isTouched = false,
+  });
   final double x;
   final double y;
+  final bool isTouched;
 
   /// Copies current [FlSpot] to a new [FlSpot],
   /// and replaces provided values.
@@ -458,6 +463,7 @@ class FlSpot with EquatableMixin {
     return FlSpot(
       x ?? this.x,
       y ?? this.y,
+      isTouched: isTouched,
     );
   }
 
@@ -497,6 +503,7 @@ class FlSpot with EquatableMixin {
     return FlSpot(
       lerpDouble(a.x, b.x, t)!,
       lerpDouble(a.y, b.y, t)!,
+      isTouched: b.isTouched,
     );
   }
 }
