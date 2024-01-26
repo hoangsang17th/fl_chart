@@ -127,7 +127,7 @@ class PieChartData extends BaseChartData with EquatableMixin {
 }
 
 /// Holds data related to drawing each [PieChart] section.
-class PieChartSectionData {
+class PieChartSectionData extends Equatable {
   /// [PieChart] draws section from right side of the circle (0 degrees),
   /// each section have a [value] that determines how much it should occupy,
   /// this is depends on sum of all sections, each section should
@@ -160,7 +160,7 @@ class PieChartSectionData {
     double? titlePositionPercentageOffset,
     double? badgePositionPercentageOffset,
     this.isTouched = false,
-    this. touchedRadius = 0,
+    this.touchedRadius = 0,
     this.marginTouchedRadius = 5,
   })  : value = value ?? 10,
         color = color ?? Colors.cyan,
@@ -294,6 +294,24 @@ class PieChartSectionData {
           lerpDouble(a.marginTouchedRadius, b.marginTouchedRadius, t) ?? 0,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        value,
+        color,
+        gradient,
+        radius,
+        showTitle,
+        titleStyle,
+        title,
+        borderSide,
+        badgeWidget,
+        titlePositionPercentageOffset,
+        badgePositionPercentageOffset,
+        isTouched,
+        touchedRadius,
+        marginTouchedRadius,
+      ];
 }
 
 /// Holds data to handle touch events, and touch responses in the [PieChart].
