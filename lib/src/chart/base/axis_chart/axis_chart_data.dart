@@ -1127,19 +1127,16 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
   /// size, ... of the text.
   /// Drawing text will retrieve through [labelResolver],
   /// you can override it with your custom data.
-  /// /// [show] determines showing label or not.
+  /// [show] determines showing label or not.
+  /// [direction] determines if the direction of the text should be horizontal or vertical.
   HorizontalLineLabel({
-    EdgeInsets? padding,
+    super.padding = const EdgeInsets.all(6),
     super.style,
-    Alignment? alignment,
+    super.alignment = Alignment.topLeft,
     super.show = false,
-    String Function(HorizontalLine)? labelResolver,
-  })  : labelResolver =
-            labelResolver ?? HorizontalLineLabel.defaultLineLabelResolver,
-        super(
-          padding: padding ?? const EdgeInsets.all(6),
-          alignment: alignment ?? Alignment.topLeft,
-        );
+    super.direction = LabelDirection.horizontal,
+    this.labelResolver = HorizontalLineLabel.defaultLineLabelResolver,
+  });
 
   /// Resolves a label for showing.
   final String Function(HorizontalLine) labelResolver;
@@ -1156,11 +1153,12 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
   ) {
     return HorizontalLineLabel(
       padding:
-          EdgeInsets.lerp(a.padding as EdgeInsets, b.padding as EdgeInsets, t),
+          EdgeInsets.lerp(a.padding as EdgeInsets, b.padding as EdgeInsets, t)!,
       style: TextStyle.lerp(a.style, b.style, t),
-      alignment: Alignment.lerp(a.alignment, b.alignment, t),
+      alignment: Alignment.lerp(a.alignment, b.alignment, t)!,
       labelResolver: b.labelResolver,
       show: b.show,
+      direction: b.direction,
     );
   }
 
@@ -1172,6 +1170,7 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
         padding,
         style,
         alignment,
+        direction,
       ];
 }
 
@@ -1183,25 +1182,19 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
   /// Drawing text will retrieve through [labelResolver],
   /// you can override it with your custom data.
   /// [show] determines showing label or not.
+  /// [direction] determines if the direction of the text should be horizontal or vertical.
   VerticalLineLabel({
-    EdgeInsets? padding,
-    TextStyle? style,
-    Alignment? alignment,
-    bool? show,
-    String Function(VerticalLine)? labelResolver,
-  })  : labelResolver =
-            labelResolver ?? VerticalLineLabel.defaultLineLabelResolver,
-        super(
-          show: show ?? false,
-          padding: padding ?? const EdgeInsets.all(6),
-          style: style ??
-              const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-          alignment: alignment ?? Alignment.bottomRight,
-        );
+    super.padding = const EdgeInsets.all(6),
+    super.style = const TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
+    ),
+    super.alignment = Alignment.bottomRight,
+    super.show = false,
+    super.direction = LabelDirection.horizontal,
+    this.labelResolver = VerticalLineLabel.defaultLineLabelResolver,
+  });
 
   /// Resolves a label for showing.
   final String Function(VerticalLine) labelResolver;
@@ -1218,11 +1211,12 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
   ) {
     return VerticalLineLabel(
       padding:
-          EdgeInsets.lerp(a.padding as EdgeInsets, b.padding as EdgeInsets, t),
+          EdgeInsets.lerp(a.padding as EdgeInsets, b.padding as EdgeInsets, t)!,
       style: TextStyle.lerp(a.style, b.style, t),
-      alignment: Alignment.lerp(a.alignment, b.alignment, t),
+      alignment: Alignment.lerp(a.alignment, b.alignment, t)!,
       labelResolver: b.labelResolver,
       show: b.show,
+      direction: b.direction,
     );
   }
 
@@ -1234,6 +1228,7 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
         padding,
         style,
         alignment,
+        direction,
       ];
 }
 
