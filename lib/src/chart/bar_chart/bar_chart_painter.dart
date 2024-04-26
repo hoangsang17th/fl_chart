@@ -328,7 +328,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
           if (barRod.isTouched) {
             final center = Offset(
               (barRRect.left + barRRect.right) / 2,
-              barRod.fromY >= 0
+              barRod.toY >= 0
                   ? barRRect.top
                   : min(barRRect.top, barRRect.bottom),
             );
