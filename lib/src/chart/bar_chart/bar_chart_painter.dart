@@ -328,10 +328,9 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
           if (barRod.isTouched) {
             final center = Offset(
               (barRRect.left + barRRect.right) / 2,
-              barRRect.bottom >= 0 ?
-              barRRect.top:
-
-              min(barRRect.top, barRRect.bottom),
+              barRod.fromY >= 0
+                  ? barRRect.top
+                  : min(barRRect.top, barRRect.bottom),
             );
             canvasWrapper
               ..drawCircle(
