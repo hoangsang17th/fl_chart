@@ -330,7 +330,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
               (barRRect.left + barRRect.right) / 2,
               barRod.toY >= 0
                   ? barRRect.top
-                  : min(barRRect.top, barRRect.bottom),
+                  : max(barRRect.top, barRRect.bottom),
             );
             canvasWrapper
               ..drawCircle(
